@@ -4,7 +4,9 @@ module.exports = {
     es2021: true,
     node: true
   },
-  extends: 'standard-with-typescript',
+  extends: [
+    '@infokin/eslint-config/angular',
+  ],
   overrides: [
   ],
   parserOptions: {
