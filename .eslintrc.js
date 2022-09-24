@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
-  extends: [
-    '@infokin/eslint-config/angular',
+    extends: [
+    '@infokin/eslint-config/angular'
   ],
   overrides: [
     {
@@ -20,5 +20,5 @@ module.exports = {
         ]
       }
     }
-  ],
-}
+  ]
+};
