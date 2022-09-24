@@ -11,5 +11,6 @@ if (environment.production) {
 platformBrowserDynamic()
   .bootstrapModule(AppModule)
   .catch((err: unknown) => {
-    console.error(err) /* eslint-disable no-console */
+    /* eslint-disable no-console */
+    console.error(err);
   });
