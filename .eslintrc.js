@@ -1,6 +1,9 @@
 'use strict';
 module.exports = {
-    extends: [
+  env: {
+    jasmine: true
+  },
+  extends: [
     '@infokin/eslint-config/angular'
   ],
   overrides: [
