@@ -15,17 +15,4 @@ describe('AppComponent', () => {
     const app: AppComponent = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
-
-  it('should have as title chat-app-ng', () => {
-    const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
-    const app: AppComponent = fixture.componentInstance;
-    expect(app.title).toEqual('chat-app-ng');
-  });
-
-  it('should render title', () => {
-    const fixture: ComponentFixture<AppComponent> = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled: HTMLElement = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('chat-app-ng app is running!');
-  });
 });

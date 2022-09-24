@@ -1,9 +1,5 @@
+'use strict';
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    node: true
-  },
   extends: [
     '@infokin/eslint-config/angular',
   ],
@@ -11,7 +7,7 @@ module.exports = {
     {
       files: ['*.ts'],
       parserOptions: {
-        project: './tsconfig.angular.json'
+        project: './tsconfig.eslint.json'
       },
       rules: {
         '@angular-eslint/component-selector': [
@@ -25,10 +21,4 @@ module.exports = {
       }
     }
   ],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module'
-  },
-  rules: {
-  }
 }
