@@ -16,6 +16,7 @@ export class ChatComponent implements OnInit {
   }
 
   public sendMessage(): void {
+    // TODO [CHAT-18]: Use message service
     console.log(this.messageForm.value);
   }
 }
