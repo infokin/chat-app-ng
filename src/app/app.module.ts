@@ -3,14 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ButtonModule } from 'primeng/button';
+import { ChatModule } from './components/chat/chat.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChatComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ChatModule
   ],
   providers: [],
   bootstrap: [AppComponent]
