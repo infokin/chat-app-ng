@@ -15,4 +15,7 @@ export class ChatComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public sendMessage(): void {
+    console.log(this.messageForm.value);
+  }
 }
