@@ -23,13 +23,14 @@ export class MessageService {
     const jsonConvert: JsonConvert = new JsonConvert();
     try {
       /**
-       * Copied from json2typescript
+       * Copied from https://www.npmjs.com/package/json2typescript
        * The returned value will be an instance or an array of instances of the given class reference.
-       * Tip: The param json must not be a string, but an object or an array.
-       * Use JSON.parse() before applying the deserialize method in case you have a json string.
+       * Tip: The return value is not a string. In case you need a string as result,
+       * use JSON.stringify() after calling the serialize method.
        */
       const body: string = jsonConvert.serializeObject(message, Message);
-      return this.http.post<Message>(this.chatUrl, body);
+      const bodyJson = JSON.stringify(body);
+      return this.http.post<Message>(this.chatUrl, bodyJson);
     } catch (error: unknown) {
       console.error(error);
       throw new Error('Converting from message to json failed.');
