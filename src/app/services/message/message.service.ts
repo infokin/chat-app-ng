@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Message} from '../../models';
 import {JsonUtils} from '../../utils/json-utils';
+import {NGXLogger} from 'ngx-logger';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class MessageService {
   private chatUrl: string = `${this.serverUrl}/messages`;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private logger: NGXLogger
   ) {
   }
 
@@ -23,7 +25,7 @@ export class MessageService {
     try {
       body = JsonUtils.serializeObject(message, Message);
     } catch (error: unknown) {
-      console.error(error);
+      this.logger.error(error);
       throw new Error('Converting from message to json failed.');
     }
 
