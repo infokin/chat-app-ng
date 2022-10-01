@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Message} from '../../models';
-import {JsonConvert} from 'json2typescript';
+import {JsonUtils} from '../../utils/json-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -19,22 +19,14 @@ export class MessageService {
   }
 
   public sendMessage(message: Message): Observable<Message> {
-
-    const jsonConvert: JsonConvert = new JsonConvert();
+    let body: any;
     try {
-      /**
-       * Copied from https://www.npmjs.com/package/json2typescript
-       * The returned value will be an instance or an array of instances of the given class reference.
-       * Tip: The return value is not a string. In case you need a string as result,
-       * use JSON.stringify() after calling the serialize method.
-       */
-      const body: string = jsonConvert.serializeObject(message, Message);
-      const bodyJson = JSON.stringify(body);
-      return this.http.post<Message>(this.chatUrl, bodyJson);
+      body = JsonUtils.serializeObject(message, Message);
     } catch (error: unknown) {
       console.error(error);
       throw new Error('Converting from message to json failed.');
     }
-  }
 
+    return this.http.post<Message>(this.chatUrl, JSON.stringify(body));
+  }
 }
