@@ -14,7 +14,7 @@ export class JsonUtils {
    * @param data The data object
    * @param classRef The class reference
    */
-  public static serializeObject<T extends object, U extends object>(data: T, classRef: new() => U): any {
+  public static serializeObject<T extends object, U extends object>(data: T, classRef: new() => U): unknown {
     return this.jsonConvert.serializeObject(data, classRef);
   }
 
@@ -24,7 +24,7 @@ export class JsonUtils {
    * @param dataArray
    * @param classRef
    */
-  public static serializeArray<T extends object, U extends object>(dataArray: T[], classRef: new() => U): any[] {
+  public static serializeArray<T extends object, U extends object>(dataArray: T[], classRef: new() => U): unknown[] {
     return this.jsonConvert.serializeArray(dataArray, classRef);
   }
 }

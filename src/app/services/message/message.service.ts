@@ -21,7 +21,7 @@ export class MessageService {
   }
 
   public sendMessage(message: Message): Observable<Message> {
-    let body: any;
+    let body: unknown;
     try {
       body = JsonUtils.serializeObject(message, Message);
     } catch (error: unknown) {
