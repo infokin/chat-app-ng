@@ -4,27 +4,11 @@ export class JsonUtils {
 
   private static jsonConvert: JsonConvert = new JsonConvert();
 
-  /**
-   * Wraps the serializeObject method of JsonConvert.
-   * Tries to serialize an object to a json object.
-   * The return value is not a string. In case you need a string as result,
-   * use JSON.stringify() after calling the serialize method.
-   *
-   * Throws an error if it fails.
-   * @param data The data object
-   * @param classRef The class reference
-   */
-  public static serializeObject<T extends object, U extends object>(data: T, classRef: new() => U): unknown {
-    return this.jsonConvert.serializeObject(data, classRef);
+  private constructor() {
   }
 
-  /**
-   * Wraps the serializeArray method of JsonConvert.
-   * Tries to serialize an array of type to a json array using the mappings on the provided class.
-   * @param dataArray
-   * @param classRef
-   */
-  public static serializeArray<T extends object, U extends object>(dataArray: T[], classRef: new() => U): unknown[] {
-    return this.jsonConvert.serializeArray(dataArray, classRef);
+  public static serialize<T extends object>(data: T | T[]): string {
+    const serializedData: unknown | unknown[] = JsonUtils.jsonConvert.serializeObject(data);
+    return JSON.stringify(serializedData);
   }
 }

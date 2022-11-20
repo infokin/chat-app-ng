@@ -4,15 +4,14 @@ import {Observable} from 'rxjs';
 import {Message} from '../../models';
 import {JsonUtils} from '../../utils/json-utils';
 import {NGXLogger} from 'ngx-logger';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  // TODO: put serverUrl in an config file
-  private serverUrl: string = 'localhost:8080';
-  private chatUrl: string = `${this.serverUrl}/messages`;
+  private static readonly MESSAGES_PATH: string = `${environment.serverUrl}/messages`;
 
   constructor(
     private http: HttpClient,
@@ -21,14 +20,7 @@ export class MessageService {
   }
 
   public sendMessage(message: Message): Observable<Message> {
-    let body: unknown;
-    try {
-      body = JsonUtils.serializeObject(message, Message);
-    } catch (error: unknown) {
-      this.logger.error(error);
-      throw new Error('Converting from message to json failed.');
-    }
-
-    return this.http.post<Message>(this.chatUrl, JSON.stringify(body));
+    let body: string = JsonUtils.serialize<Message>(message);
+    return this.http.post<Message>(MessageService.MESSAGES_PATH, JSON.stringify(body));
   }
 }
