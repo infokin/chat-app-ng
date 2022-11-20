@@ -7,8 +7,8 @@ export class JsonUtils {
   private constructor() {
   }
 
-  public static serialize<T extends object>(data: T | T[]): string {
-    const serializedData: unknown | unknown[] = JsonUtils.jsonConvert.serializeObject(data);
+  public static serialize<T extends object>(data: T | T[], classReference?: new() => T): string {
+    const serializedData: unknown | unknown[] = JsonUtils.jsonConvert.serialize(data, classReference);
     return JSON.stringify(serializedData);
   }
 }
