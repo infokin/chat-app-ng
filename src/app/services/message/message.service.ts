@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Message} from '../../models';
 import {JsonUtils} from '../../utils/json-utils';
 import {NGXLogger} from 'ngx-logger';
 import {environment} from '../../../environments/environment';
+import {deserializeArray} from '../../operators/deserialize-array.operator';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,8 @@ export class MessageService {
   }
 
   public getMessages(): Observable<Message[]> {
-    return this.http.get<any[]>(MessageService.MESSAGES_PATH).pipe(
-      map((response: any[]) => JsonUtils.deserializeArray(response, Message))
+    return this.http.get<Message[]>(MessageService.MESSAGES_PATH).pipe(
+      deserializeArray(Message)
     );
   }
 }
