@@ -20,7 +20,8 @@ export class MessageService {
   }
 
   public sendMessage(message: Message): Observable<Message> {
-    const body: string = JsonUtils.serialize<Message>(message);
-    return this.http.post<Message>(MessageService.MESSAGES_PATH, JSON.stringify(body));
+    const body: string = JsonUtils.serialize(message);
+    this.logger.debug('Sending message: ', message);
+    return this.http.post<Message>(MessageService.MESSAGES_PATH, body);
   }
 }
