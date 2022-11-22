@@ -11,4 +11,10 @@ export class JsonUtils {
     const serializedData: unknown | unknown[] = JsonUtils.jsonConvert.serialize(data, classReference);
     return JSON.stringify(serializedData);
   }
+
+  public static deserializeArray<T extends object>(jsonArray: any[], classReference?: new() => T): T[] {
+    return JsonUtils
+      .jsonConvert
+      .deserializeArray<T>(jsonArray, classReference);
+  }
 }
