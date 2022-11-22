@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {Message} from '../../models';
 import {JsonUtils} from '../../utils/json-utils';
 import {NGXLogger} from 'ngx-logger';
@@ -23,5 +23,11 @@ export class MessageService {
     const body: string = JsonUtils.serialize(message);
     this.logger.debug('Sending message: ', message);
     return this.http.post<Message>(MessageService.MESSAGES_PATH, body);
+  }
+
+  public getMessages(): Observable<Message[]> {
+    return this.http.get<any[]>(MessageService.MESSAGES_PATH).pipe(
+      map((response: any[]) => JsonUtils.deserializeArray(response, Message))
+    );
   }
 }
