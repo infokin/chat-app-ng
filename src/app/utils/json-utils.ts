@@ -7,14 +7,14 @@ export class JsonUtils {
   private constructor() {
   }
 
-  public static serialize<T extends object| object[]>(data: T | T[], classReference?: new() => T): string {
+  public static serialize<T extends object | object[]>(data: T | T[], classReference?: new() => T): string {
     const serializedData: unknown | unknown[] = JsonUtils.jsonConvert.serialize(data, classReference);
     return JSON.stringify(serializedData);
   }
 
-  public static deserializeArray<T extends object>(jsonArray: any[], classReference?: new() => T): T[] {
+  public static deserialize<T extends object>(jsonArray: object | object[], classReference?: new() => T): T | T[] {
     return JsonUtils
       .jsonConvert
-      .deserializeArray<T>(jsonArray, classReference);
+      .deserialize<T>(jsonArray, classReference);
   }
 }

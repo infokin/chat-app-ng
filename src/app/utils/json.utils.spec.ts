@@ -1,5 +1,5 @@
-import { JsonUtils } from './json-utils';
-import { Message } from '../models';
+import {JsonUtils} from './json-utils';
+import {Message} from '../models';
 
 interface IMessage {
   content: string;
@@ -15,7 +15,7 @@ describe('JsonUtils', (): void => {
     expect(serializedMessage).toContain(content);
   });
 
-  it('should deserialize', (): void => {
+  it('should deserialize as array', (): void => {
     const msg1: IMessage = {
       content: 'message one'
     };
@@ -25,11 +25,22 @@ describe('JsonUtils', (): void => {
     };
 
     const input: IMessage[] = [msg1, msg2];
-    const result: Message[] = JsonUtils.deserializeArray<Message>(input, Message);
+    const result: Message | Message[] = JsonUtils.deserialize<Message>(input, Message) as Message[];
 
     expect(result.length).toEqual(input.length);
     result.forEach((value: Message, index: number) => {
       expect(value.getContent()).toEqual(input[index]?.content)
     })
-  })
+  }),
+
+    it('should deserialize as object', (): void => {
+      const msg1: IMessage = {
+        content: 'message one'
+      };
+
+      const result: Message = JsonUtils.deserialize<Message>(msg1, Message) as Message;
+
+      expect(result).toBeInstanceOf(Message);
+      expect(result.getContent()).toEqual(msg1.content);
+    })
 })
