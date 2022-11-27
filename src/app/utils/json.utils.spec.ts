@@ -6,13 +6,27 @@ interface IMessage {
 }
 
 describe('JsonUtils', (): void => {
-  it('should serialize', (): void => {
+  it('should serialize an object', (): void => {
     const message: Message = new Message();
     const content: string = 'this is a message'
     message.setContent(content);
 
     const serializedMessage: string = JsonUtils.serialize(message, Message);
     expect(serializedMessage).toContain(content);
+  });
+
+  it('should serialize an array', (): void => {
+    const message1: Message = new Message();
+    const content1: string = 'this is a message'
+    message1.setContent(content1);
+
+    const message2: Message = new Message();
+    const content2: string = 'this is a message'
+    message2.setContent(content2);
+
+    const serializedMessage: string = JsonUtils.serialize([message1, message2], Message);
+    expect(serializedMessage).toContain(content1);
+    expect(serializedMessage).toContain(content2);
   });
 
   it('should deserialize as array', (): void => {
