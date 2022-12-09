@@ -15,3 +15,24 @@ export class Message {
   }
 
 }
+
+export namespace Message {
+
+  export class Builder {
+    private instance: Message = new Message();
+
+    public static create(): Builder {
+      return new Builder();
+    }
+
+    public setContent(content: string): Builder {
+      this.instance.setContent(content);
+      return this;
+    }
+
+    public build(): Message {
+      return this.instance;
+    }
+  }
+
+}

@@ -1,9 +1,9 @@
-import {map, MonoTypeOperatorFunction, Observable} from 'rxjs';
-import {JsonUtils} from '../utils/json-utils';
+import {map, Observable, OperatorFunction} from 'rxjs';
+import {JsonUtils} from '../utils';
 
-export function deserializeArray<T extends object>(type: new() => T): MonoTypeOperatorFunction<T[]> {
-  return (source: Observable<object[]>): Observable<T[]> =>
+export function deserializeArray<T extends object>(type: new() => T): OperatorFunction<string, T[]> {
+  return (source: Observable<string>): Observable<T[]> =>
     source.pipe(
-      map((input: object[]): T[] => JsonUtils.deserialize<T>(input, type) as T[])
+      map((input: string): T[] => JsonUtils.deserializeArray<T>(input, type))
     );
 }
