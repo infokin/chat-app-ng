@@ -1,0 +1,10 @@
+<div class="flex gap-2">
+  <textarea
+    rows="1"
+    cols="30"
+    pInputTextarea
+    [formControl]="messageForm"
+    [autoResize]="true">
+  </textarea>
+  <p-button label="Send" (click)="sendMessage()"></p-button>
+</div>
