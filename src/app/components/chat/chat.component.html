@@ -1,10 +1,4 @@
-<div class="flex gap-2">
-  <textarea
-    rows="1"
-    cols="30"
-    pInputTextarea
-    [formControl]="messageForm"
-    [autoResize]="true">
-  </textarea>
-  <p-button label="Send" (click)="sendMessage()"></p-button>
+<div class="flex flex-column gap-2">
+  <app-chat-show-messages></app-chat-show-messages>
+  <app-chat-send-messages></app-chat-send-messages>
 </div>
