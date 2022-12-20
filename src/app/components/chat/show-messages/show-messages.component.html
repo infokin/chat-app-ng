@@ -1,8 +1,8 @@
 <div class="flex">
-  <textarea
-    rows="8"
-    cols="39"
-    pInputTextarea
-    [autoResize]="true"
-  ></textarea>
+  <p-listbox
+    [options]="messages"
+    optionLabel="content"
+    [disabled]="true"
+    [style]="{'width':'26.835rem', 'height':'12rem'}"
+  ></p-listbox>
 </div>
