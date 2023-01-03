@@ -5,7 +5,7 @@ module.exports = {
     jasmine: true
   },
   extends: [
-    '@infokin/eslint-config/angular'
+    '@infokin/eslint-config-angular'
   ],
   overrides: [
     {

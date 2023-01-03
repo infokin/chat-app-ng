@@ -1,15 +1,25 @@
 {
-  "name": "chat-app-ng",
-  "version": "0.0.0",
+  "name": "@infokin/chat-app-ng",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A simple chat application.",
+  "homepage": "https://github.com/infokin/chat-app-ng#readme",
+  "bugs": {
+    "url": "https://github.com/infokin/chat-app-ng/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/infokin/chat-app-ng.git"
+  },
+  "license": "MIT",
   "scripts": {
+    "build": "ng build",
+    "lint": "ng lint",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "watch": "ng build --watch --configuration development"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^14.2.1",
     "@angular/common": "^14.2.1",
@@ -32,7 +42,7 @@
     "@angular-eslint/template-parser": "14.0.4",
     "@angular/cli": "~14.2.1",
     "@angular/compiler-cli": "^14.2.1",
-    "@infokin/eslint-config": "^1.3.0",
+    "@infokin/eslint-config-angular": "^1.1.0",
     "@infokin/tsconfig": "^1.1.2",
     "@types/jasmine": "~4.0.0",
     "@typescript-eslint/eslint-plugin": "5.36.2",
