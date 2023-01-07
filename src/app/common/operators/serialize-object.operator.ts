@@ -1,5 +1,5 @@
 import { map, Observable, OperatorFunction } from "rxjs";
-import { JsonUtils } from "../common/utils";
+import { JsonUtils } from "../utils";
 
 export function serializeObject<T extends object>(
   type: new() => T

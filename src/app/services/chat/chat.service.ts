@@ -5,7 +5,7 @@ import { Message } from "../../models";
 import { JsonUtils } from "../../common/utils";
 import { NGXLogger } from "ngx-logger";
 import { environment } from "../../../environments/environment";
-import { deserializeArray } from "../../operators";
+import { deserializeArray } from "../../common/operators";
 
 @Injectable({
   providedIn: "root"
