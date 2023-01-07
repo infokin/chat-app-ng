@@ -13,12 +13,11 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "ng build",
-    "lint": "ng lint",
-    "ng": "ng",
     "start": "ng serve",
+    "lint": "ng lint",
     "test": "ng test",
-    "watch": "ng build --watch --configuration development"
+    "build": "ng build",
+    "build:prod": "ng build --configuration production"
   },
   "dependencies": {
     "@angular/animations": "^14.2.1",
