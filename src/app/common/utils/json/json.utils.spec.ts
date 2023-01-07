@@ -1,17 +1,17 @@
-import {JsonUtils} from './json.utils';
-import {JsonObject, JsonProperty} from "json2typescript";
+import { JsonUtils } from "./json.utils";
+import { JsonObject, JsonProperty } from "json2typescript";
 
 @JsonObject("MockObject")
 class MockObject {
 
-  @JsonProperty('content', String)
+  @JsonProperty("content", String)
   private content: string | undefined = undefined;
 
   public getContent(): string | undefined {
     return this.content;
   }
 
-  public setContent(content: string | undefined) {
+  public setContent(content: string | undefined): void {
     this.content = content;
   }
 
@@ -23,10 +23,10 @@ function createMockObject(content: string): MockObject {
   return mockObject;
 }
 
-describe('JsonUtils', (): void => {
+describe("JsonUtils", (): void => {
 
-  it('should serialize an object', (): void => {
-    const content: string = 'This is a test message..';
+  it("should serialize an object", (): void => {
+    const content: string = "This is a test message..";
     const testObject: MockObject = createMockObject(content);
 
     const serializedObject: string = JsonUtils.serializeObject(testObject);
@@ -34,11 +34,11 @@ describe('JsonUtils', (): void => {
     expect(serializedObject).toContain(content);
   });
 
-  it('should serialize an array', (): void => {
-    const content1: string = 'This is test message 1..';
+  it("should serialize an array", (): void => {
+    const content1: string = "This is test message 1..";
     const testObject1: MockObject = createMockObject(content1);
 
-    const content2: string = 'This is test message 2..';
+    const content2: string = "This is test message 2..";
     const testObject2: MockObject = createMockObject(content2);
 
     const testArray: MockObject[] = [
@@ -52,7 +52,7 @@ describe('JsonUtils', (): void => {
     expect(serializedArray).toContain(content2);
   });
 
-  it('should deserialize an object', (): void => {
+  it("should deserialize an object", (): void => {
     const content: string = "This is a test message..";
     const testObject: MockObject = createMockObject(content);
 
@@ -65,7 +65,7 @@ describe('JsonUtils', (): void => {
     expect(deserializedObject.getContent()).toEqual(content);
   });
 
-  it('should deserialize an array', (): void => {
+  it("should deserialize an array", (): void => {
     const content1: string = "This is test message 1..";
     const testObject1: MockObject = createMockObject(content1);
 
@@ -83,7 +83,7 @@ describe('JsonUtils', (): void => {
 
     expect(deserializedArray.length).toEqual(testArray.length);
 
-    for (let i = 0; i < deserializedArray.length; i++) {
+    for (let i: number = 0; i < deserializedArray.length; i++) {
       const deserializedObject: MockObject | null = deserializedArray[i] ?? null;
       expect(deserializedObject).not.toBeNull();
       expect(deserializedObject).toBeInstanceOf(MockObject);
@@ -91,7 +91,9 @@ describe('JsonUtils', (): void => {
       const testObject: MockObject | null = testArray[i] ?? null;
       expect(testObject).not.toBeNull();
 
-      expect(deserializedObject?.getContent()).toEqual(testObject?.getContent());
+      const actualObject: string | undefined = deserializedObject?.getContent();
+      const expectedObject: string | undefined = testObject?.getContent();
+      expect(actualObject).toEqual(expectedObject);
     }
   });
 
