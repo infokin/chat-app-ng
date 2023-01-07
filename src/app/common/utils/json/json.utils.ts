@@ -4,6 +4,9 @@ export class JsonUtils {
 
   private static jsonConvert: JsonConvert = new JsonConvert();
 
+  private constructor() {
+  }
+
   public static serialize<T extends object>(
     data: T | T[],
     classReference?: new () => T
@@ -59,9 +62,6 @@ export class JsonUtils {
   ): T[] {
     const jsonArray: object[] = JSON.parse(jsonString) as object[];
     return JsonUtils.jsonConvert.deserializeArray<T>(jsonArray, classReference);
-  }
-
-  private constructor() {
   }
 
 }
