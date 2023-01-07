@@ -1,9 +1,9 @@
-import {JsonObject, JsonProperty} from 'json2typescript';
+import { JsonObject, JsonProperty } from "json2typescript";
 
-@JsonObject('Message')
+@JsonObject("Message")
 export class Message {
 
-  @JsonProperty('content', String)
+  @JsonProperty("content", String)
   private content: string | undefined = undefined;
 
   public getContent(): string | undefined {
