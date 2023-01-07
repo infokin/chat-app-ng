@@ -2,14 +2,12 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Message } from "../../models";
-import { JsonUtils } from "../../common/utils";
+import { JsonUtils } from "../../../../common/utils";
 import { NGXLogger } from "ngx-logger";
-import { environment } from "../../../environments/environment";
-import { deserializeArray } from "../../common/operators";
+import { environment } from "../../../../../environments/environment";
+import { deserializeArray } from "../../../../common/operators";
 
-@Injectable({
-  providedIn: "root"
-})
+@Injectable()
 export class ChatService {
 
   private static readonly MESSAGES_URI: string = `${environment.serverUrl}/messages`;
