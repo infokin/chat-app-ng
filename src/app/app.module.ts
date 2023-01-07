@@ -13,7 +13,9 @@ import { AppComponent } from "./app.component";
     HttpClientModule,
     LoggerModule.forRoot(null)
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule {
 }
