@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 import { Message } from "../../models";
-import { JsonUtils } from "../../utils";
+import { JsonUtils } from "../../common/utils";
 import { NGXLogger } from "ngx-logger";
 import { environment } from "../../../environments/environment";
+import { deserializeArray } from "../../operators";
 
 @Injectable({
   providedIn: "root"
@@ -26,10 +27,9 @@ export class ChatService {
   }
 
   public getMessages(): Observable<Message[]> {
-    return of([]);
-    // return this.http.get(ChatService.MESSAGES_URI)
-    //   .pipe(
-    //     deserializeArray(Message)
-    //   );
+    return this.http.get<string>(ChatService.MESSAGES_URI)
+      .pipe(
+        deserializeArray(Message)
+      );
   }
 }
