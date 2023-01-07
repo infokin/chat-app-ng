@@ -1,4 +1,4 @@
-import {JsonConvert} from 'json2typescript';
+import { JsonConvert } from "json2typescript";
 
 export class JsonUtils {
 
