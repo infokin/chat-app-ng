@@ -1,5 +1,6 @@
-import {Environment} from "../app/common/interfaces/environment.interface";
+import { Environment } from "../app/common/interfaces";
 
 export const environment: Environment = {
-  production: true
+  production: true,
+  serverUrl: "http://localhost:8080/"
 };
