@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ChatComponent } from './chat.component';
+import { ChatUiComponent } from './chat-ui.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -8,7 +8,7 @@ import { SendMessagesModule } from './send-messages/send-messages.module';
 
 @NgModule({
   declarations: [
-    ChatComponent
+    ChatUiComponent
   ],
   imports: [
     ButtonModule,
@@ -17,6 +17,6 @@ import { SendMessagesModule } from './send-messages/send-messages.module';
     ShowMessagesModule,
     SendMessagesModule,
   ],
-  exports: [ChatComponent]
+  exports: [ChatUiComponent]
 })
-export class ChatModule { }
+export class ChatUiModule { }

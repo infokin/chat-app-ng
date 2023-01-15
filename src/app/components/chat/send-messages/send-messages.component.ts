@@ -8,7 +8,6 @@ import { FormControl } from '@angular/forms';
 })
 export class SendMessagesComponent implements OnInit {
 
-
   public messageForm = new FormControl('');
 
   constructor() {

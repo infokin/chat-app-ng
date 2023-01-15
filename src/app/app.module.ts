@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { ChatModule } from './components/chat/chat.module';
+import { ChatUiModule } from './components/chat/chat-ui.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +10,7 @@ import { ChatModule } from './components/chat/chat.module';
   ],
   imports: [
     BrowserModule,
-    ChatModule
+    ChatUiModule
   ],
   bootstrap: [
     AppComponent
