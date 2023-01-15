@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ChatService } from '../../../modules/chat/services/chat/chat.service';
+import { Message } from '../../../modules/chat/models';
 
 @Component({
   selector: 'app-chat-send-messages',
@@ -16,6 +17,7 @@ export class SendMessagesComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private chatService: ChatService
   ) {
   }
 

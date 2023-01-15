@@ -1,8 +1,9 @@
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { SendMessagesComponent } from './send-messages.component';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ChatModule } from '../../../modules/chat/chat.module';
 
 @NgModule({
   declarations: [
@@ -10,6 +11,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   ],
   imports: [
     ButtonModule,
+    ChatModule,
     InputTextareaModule,
     ReactiveFormsModule,
   ],

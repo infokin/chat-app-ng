@@ -7,7 +7,7 @@ import { NGXLogger } from "ngx-logger";
 import { environment } from "../../../../../environments/environment";
 import { deserializeArray } from "../../../../common/operators";
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ChatService {
 
   private static readonly MESSAGES_URI: string = `${environment.serverUrl}/messages`;
