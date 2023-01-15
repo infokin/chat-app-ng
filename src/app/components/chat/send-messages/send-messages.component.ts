@@ -10,23 +10,33 @@ import { Message } from '../../../modules/chat/models';
 })
 export class SendMessagesComponent implements OnInit {
 
-  public messageForm: FormGroup = this.formBuilder
-    .group({
-      content: ['', Validators.required]
-    });
+  public messageForm: FormGroup<{
+    content: FormControl<string | null>;
+  }>;
 
   constructor(
     private formBuilder: FormBuilder,
     private chatService: ChatService
   ) {
+    this.messageForm = this.formBuilder
+      .group({
+        content: ['', Validators.required]
+      });
   }
 
   ngOnInit(): void {
   }
 
   public sendMessage(): void {
-    // TODO [CHAT-18]: Use message service
-    console.log(this.messageForm.value);
+    const content = this.messageForm.controls['content'].value;
+    if(content === null) {
+      return;
+    }
+    const message: Message = Message.Builder
+      .create()
+      .setContent(content)
+      .build();
+    this.chatService.sendMessage(message);
     this.messageForm.reset();
   }
 }
