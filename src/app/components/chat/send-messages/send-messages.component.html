@@ -1,16 +1,18 @@
-<div class="flex gap-2">
+<form [formGroup]="messageForm">
+  <div class="flex gap-2">
   <textarea
     rows="1"
     cols="31"
     pInputTextarea
-    [formControl]="messageForm"
+    formControlName="content"
     [autoResize]="true"
   ></textarea>
-  <button
-    pButton
-    type="button"
-    class="p-button-sm p-button-help"
-    label="Send"
-    (click)="sendMessage()"
-  ></button>
-</div>
+    <button
+      pButton
+      type="button"
+      class="p-button-sm p-button-help"
+      label="Send"
+      (click)="sendMessage()"
+    ></button>
+  </div>
+</form>

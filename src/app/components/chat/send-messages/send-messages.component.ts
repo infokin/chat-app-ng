@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-chat-send-messages',
@@ -8,9 +8,14 @@ import { FormControl } from '@angular/forms';
 })
 export class SendMessagesComponent implements OnInit {
 
-  public messageForm = new FormControl('');
+  public messageForm: FormGroup = this.formBuilder
+    .group({
+      content: ['', Validators.required]
+    });
 
-  constructor() {
+  constructor(
+    private formBuilder: FormBuilder
+  ) {
   }
 
   ngOnInit(): void {
