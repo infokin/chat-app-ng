@@ -1,4 +1,4 @@
-<form [formGroup]="messageForm">
+<form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
   <div class="flex gap-2">
   <textarea
     rows="1"
@@ -9,10 +9,9 @@
   ></textarea>
     <button
       pButton
-      type="button"
+      type="submit"
       class="p-button-sm p-button-help"
       label="Send"
-      (click)="sendMessage()"
     ></button>
   </div>
 </form>
