@@ -1,14 +1,24 @@
 {
-  "name": "chat-app-ng",
-  "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
-  },
+  "name": "@infokin/chat-app-ng",
+  "version": "0.1.0",
   "private": true,
+  "description": "A simple chat application.",
+  "homepage": "https://github.com/infokin/chat-app-ng#readme",
+  "bugs": {
+    "url": "https://github.com/infokin/chat-app-ng/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/infokin/chat-app-ng.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "ng serve",
+    "lint": "ng lint",
+    "test": "ng test",
+    "build": "ng build",
+    "build:prod": "ng build --configuration production"
+  },
   "dependencies": {
     "@angular/animations": "^14.2.1",
     "@angular/common": "^14.2.1",
@@ -20,22 +30,37 @@
     "@angular/router": "^14.2.1",
     "primeflex": "^3.3.0",
     "primeng": "^14.1.1",
+    "json2typescript": "^1.5.1",
+    "ngx-logger": "^5.0.11",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.1",
+    "@angular-eslint/builder": "14.0.4",
+    "@angular-eslint/eslint-plugin": "14.0.4",
+    "@angular-eslint/eslint-plugin-template": "14.0.4",
+    "@angular-eslint/schematics": "14.0.4",
+    "@angular-eslint/template-parser": "14.0.4",
     "@angular/cli": "~14.2.1",
     "@angular/compiler-cli": "^14.2.1",
+    "@infokin/eslint-config-angular": "^1.1.0",
     "@infokin/tsconfig": "^1.1.2",
     "@types/jasmine": "~4.0.0",
+    "@typescript-eslint/eslint-plugin": "5.36.2",
+    "@typescript-eslint/parser": "5.36.2",
+    "eslint": "^8.23.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.5",
+    "eslint-plugin-promise": "^6.0.1",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~4.7.2"
+    "typescript": "^4.8.3"
   }
 }
