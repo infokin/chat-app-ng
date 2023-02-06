@@ -38,6 +38,7 @@ export class ChatService {
       eventSource
         .addEventListener("error", (error: unknown) => {
           this.logger.error("Error in sse connection", error)
+          obs.error(error);
         });
 
       eventSource.addEventListener("message", (msg: MessageEvent<Message>) => {
