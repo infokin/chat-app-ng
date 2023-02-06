@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { delay, from, Observable, of, Subscription } from 'rxjs';
 import { ChatService } from '../../../modules/chat/services/chat/chat.service';
 import { Message } from '../../../modules/chat/models';
@@ -7,7 +7,7 @@ import { Message } from '../../../modules/chat/models';
   templateUrl: './show-messages.component.html',
   styleUrls: ['./show-messages.component.scss']
 })
-export class ShowMessagesComponent implements OnInit {
+export class ShowMessagesComponent implements OnInit, OnDestroy {
 
   public messages: Message[] = [];
 
@@ -28,5 +28,9 @@ export class ShowMessagesComponent implements OnInit {
             next: (msg: Message) => this.messages.push(msg),
           })
       );
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
