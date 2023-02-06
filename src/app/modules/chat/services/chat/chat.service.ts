@@ -30,4 +30,22 @@ export class ChatService {
         deserializeArray(Message)
       );
   }
+
+  public getMessageStream(): Observable<Message> {
+    return new Observable<Message>(obs => {
+      const eventSource = new EventSource(ChatService.MESSAGES_URI);
+
+      eventSource
+        .addEventListener("error", (error: unknown) => {
+          this.logger.error("Error in sse connection", error)
+        });
+
+      eventSource.addEventListener("message", (msg: MessageEvent<Message>) => {
+        this.logger.info("Received sse message", msg.data);
+        obs.next(msg.data);
+      });
+
+      return () => eventSource.close();
+    })
+  }
 }
