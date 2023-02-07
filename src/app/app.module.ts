@@ -1,14 +1,13 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
 
-import { AppComponent } from './app.component';
-import { ChatUiModule } from './components/chat/chat-ui.module';
-import { ChatModule } from './modules/chat/chat.module';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { AppComponent } from "./app.component";
+import { ChatUiModule } from "./components/chat/chat-ui.module";
+import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -16,7 +15,7 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
     LoggerModule.forRoot({
       level: NgxLoggerLevel.DEBUG,
       serverLogLevel: NgxLoggerLevel.ERROR
-    }),
+    })
   ],
   bootstrap: [
     AppComponent

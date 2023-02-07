@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, Subscriber } from "rxjs";
 import { Message } from "../../models";
 import { JsonUtils } from "../../../../common/utils";
 import { NGXLogger } from "ngx-logger";
 import { environment } from "../../../../../environments/environment";
 import { deserializeArray } from "../../../../common/operators";
 
-@Injectable({providedIn: 'root'})
+@Injectable({providedIn: "root"})
 export class ChatService {
 
   private static readonly MESSAGES_URI: string = `${environment.serverUrl}/messages`;
@@ -32,12 +32,12 @@ export class ChatService {
   }
 
   public getMessageStream(): Observable<Message> {
-    return new Observable<Message>(obs => {
-      const eventSource = new EventSource(ChatService.MESSAGES_URI);
+    return new Observable<Message>((obs: Subscriber<Message>) => {
+      const eventSource: EventSource = new EventSource(ChatService.MESSAGES_URI);
 
       eventSource
         .addEventListener("error", (error: unknown) => {
-          this.logger.error("Error in sse connection", error)
+          this.logger.error("Error in sse connection", error);
           obs.error(error);
         });
 
@@ -47,6 +47,6 @@ export class ChatService {
       });
 
       return () => eventSource.close();
-    })
+    });
   }
 }

@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { delay, from, Observable, of, Subscription } from 'rxjs';
-import { ChatService } from '../../../modules/chat/services/chat/chat.service';
-import { Message } from '../../../modules/chat/models';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { delay, from, Observable, of, Subscription } from "rxjs";
+import { ChatService } from "../../../modules/chat/services/chat/chat.service";
+import { Message } from "../../../modules/chat/models";
 @Component({
-  selector: 'app-chat-show-messages',
-  templateUrl: './show-messages.component.html',
-  styleUrls: ['./show-messages.component.scss']
+  selector: "chat-app-show-messages",
+  templateUrl: "./show-messages.component.html",
+  styleUrls: ["./show-messages.component.scss"]
 })
 export class ShowMessagesComponent implements OnInit, OnDestroy {
 
@@ -25,7 +25,7 @@ export class ShowMessagesComponent implements OnInit, OnDestroy {
         this.messageService
           .getMessageStream()
           .subscribe({
-            next: (msg: Message) => this.messages.push(msg),
+            next: (msg: Message) => this.messages.push(msg)
           })
       );
   }
