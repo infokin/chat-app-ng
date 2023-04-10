@@ -1,22 +1,23 @@
-import { NgModule } from "@angular/core";
-import { ChatUiComponent } from "./chat-ui.component";
-import { ButtonModule } from "primeng/button";
-import { InputTextareaModule } from "primeng/inputtextarea";
-import { ReactiveFormsModule } from "@angular/forms";
-import { ShowMessagesModule } from "./modules/show-messages/show-messages.module";
-import { SendMessagesModule } from "./send-messages/send-messages.module";
+import {NgModule} from "@angular/core";
+import {ChatUiComponent} from "./chat-ui.component";
+import {ButtonModule} from "primeng/button";
+import {InputTextareaModule} from "primeng/inputtextarea";
+import {ReactiveFormsModule} from "@angular/forms";
+import {SendMessagesModule} from "./send-messages/send-messages.module";
+import {ListboxModule} from "primeng/listbox";
 
 @NgModule({
   declarations: [
-    ChatUiComponent
+    ChatUiComponent,
   ],
   imports: [
     ButtonModule,
     InputTextareaModule,
     ReactiveFormsModule,
-    ShowMessagesModule,
-    SendMessagesModule
+    SendMessagesModule,
+    ListboxModule
   ],
   exports: [ChatUiComponent]
 })
-export class ChatUiModule { }
+export class ChatUiModule {
+}
