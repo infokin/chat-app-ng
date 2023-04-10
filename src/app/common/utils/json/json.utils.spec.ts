@@ -52,13 +52,13 @@ describe("JsonUtils", (): void => {
     expect(serializedArray).toContain(content2);
   });
 
-  it("should deserialize an object", (): void => {
+  it("should deserialize an object from a JSON string", (): void => {
     const content: string = "This is a test message..";
     const testObject: MockObject = createMockObject(content);
 
-    const jsonObject: string = JsonUtils.serializeObject(testObject);
+    const json: string = JsonUtils.serializeObject(testObject);
 
-    const deserializedObject: MockObject = JsonUtils.deserializeObject(jsonObject, MockObject);
+    const deserializedObject: MockObject = JsonUtils.deserializeObject(json, MockObject);
 
     expect(deserializedObject).not.toBeNull();
     expect(deserializedObject).toBeInstanceOf(MockObject);
@@ -77,9 +77,9 @@ describe("JsonUtils", (): void => {
       testObject2
     ];
 
-    const jsonArray: string = JsonUtils.serializeArray(testArray);
+    const json: string = JsonUtils.serializeArray(testArray);
 
-    const deserializedArray: MockObject[] = JsonUtils.deserializeArray(jsonArray, MockObject);
+    const deserializedArray: MockObject[] = JsonUtils.deserializeArray(json, MockObject);
 
     expect(deserializedArray.length).toEqual(testArray.length);
 
