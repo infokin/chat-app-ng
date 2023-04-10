@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { delay, from, Observable, of, Subscription } from "rxjs";
-import { ChatService } from "../../../modules/chat/services/chat/chat.service";
-import { Message } from "../../../modules/chat/models";
+import { ChatService } from "../../../../../../services/chat/chat.service";
+import { Message } from "../../../../../../models";
 @Component({
   selector: "chat-app-show-messages",
   templateUrl: "./show-messages.component.html",

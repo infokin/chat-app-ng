@@ -1,8 +1,7 @@
 import { NgModule } from "@angular/core";
-import { ShowMessagesComponent } from "./show-messages.component";
+import { ShowMessagesComponent } from "./components/show-messages/show-messages.component";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { ListboxModule } from "primeng/listbox";
-import { AsyncPipe } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -10,8 +9,7 @@ import { AsyncPipe } from "@angular/common";
   ],
   imports: [
     InputTextareaModule,
-    ListboxModule,
-    AsyncPipe
+    ListboxModule
   ],
   exports: [ShowMessagesComponent]
 })

@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { ChatService } from "../../../modules/chat/services/chat/chat.service";
-import { Message } from "../../../modules/chat/models";
+import { ChatService } from "../../../services/chat/chat.service";
+import { Message } from "../../../models";
 
 @Component({
   selector: "chat-app-send-messages",
