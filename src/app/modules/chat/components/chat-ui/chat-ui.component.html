@@ -10,6 +10,23 @@
     </div>
   </div>
   <div>
-    <chat-app-send-messages></chat-app-send-messages>
+    <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+      <div class="flex gap-2">
+  <textarea
+    rows="1"
+    cols="31"
+    pInputTextarea
+    formControlName="content"
+    [autoResize]="true">
+  </textarea>
+        <button
+          pButton
+          type="submit"
+          class="p-button-sm p-button-help"
+          label="Send"
+          [disabled]="messageForm.invalid">
+        </button>
+      </div>
+    </form>
   </div>
 </div>
