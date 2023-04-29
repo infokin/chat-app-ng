@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-
-import { AppComponent } from "./app.component";
-import { ChatUiModule } from "./components/chat/chat-ui.module";
 import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
+import { environment } from "../environments/environment";
+import { AppComponent } from "./app.component";
+import { ChatModule } from "./modules";
 
 @NgModule({
   declarations: [
@@ -11,10 +11,11 @@ import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
   ],
   imports: [
     BrowserModule,
-    ChatUiModule,
+    ChatModule,
     LoggerModule.forRoot({
-      level: NgxLoggerLevel.DEBUG,
-      serverLogLevel: NgxLoggerLevel.ERROR
+      level: environment.production
+        ? NgxLoggerLevel.ERROR
+        : NgxLoggerLevel.DEBUG
     })
   ],
   bootstrap: [
