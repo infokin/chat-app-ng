@@ -9,7 +9,7 @@
   </div>
   <div class="flex flex-row gap-2">
     <div class="flex-1">
-      <input pInputText [(ngModel)]="message" class="w-full"/>
+      <input pInputText [(ngModel)]="message" (keydown.enter)="onSendMessage()" class="w-full"/>
     </div>
     <div>
       <button type="button"
