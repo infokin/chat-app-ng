@@ -76,7 +76,8 @@
               "browserTarget": "chat-app-ng:build:production"
             },
             "development": {
-              "browserTarget": "chat-app-ng:build:development"
+              "browserTarget": "chat-app-ng:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
