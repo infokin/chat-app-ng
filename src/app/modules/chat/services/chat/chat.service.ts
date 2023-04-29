@@ -1,16 +1,16 @@
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable, Subscriber } from "rxjs";
-import { Message } from "../../models";
-import { JsonUtils } from "../../../../common/utils";
 import { NGXLogger } from "ngx-logger";
+import { Observable, Subscriber, TeardownLogic } from "rxjs";
 import { environment } from "../../../../../environments/environment";
 import { deserializeArray } from "../../../../common/operators";
+import { JsonUtils } from "../../../../common/utils";
+import { Message } from "../../models";
 
-@Injectable({providedIn: "root"})
+@Injectable()
 export class ChatService {
 
-  private static readonly MESSAGES_URI: string = `${environment.serverUrl}/messages`;
+  private static readonly MESSAGE_SERVICE_URL: string = environment.messageServiceUrl;
 
   constructor(
     private http: HttpClient,
@@ -18,35 +18,49 @@ export class ChatService {
   ) {
   }
 
-  public sendMessage(message: Message): Observable<Message> {
-    this.logger.debug("Sending message: ", message);
-    const body: string = JsonUtils.serialize(message);
-    return this.http.post<Message>(ChatService.MESSAGES_URI, body);
-  }
-
   public getMessages(): Observable<Message[]> {
-    return this.http.get<string>(ChatService.MESSAGES_URI)
+    return this.http.get<Message[]>(ChatService.MESSAGE_SERVICE_URL)
       .pipe(
         deserializeArray(Message)
       );
   }
 
   public getMessageStream(): Observable<Message> {
-    return new Observable<Message>((obs: Subscriber<Message>) => {
-      const eventSource: EventSource = new EventSource(ChatService.MESSAGES_URI);
+    return new Observable<Message>((subscriber: Subscriber<Message>): TeardownLogic => {
+      const eventSource: EventSource = new EventSource(ChatService.MESSAGE_SERVICE_URL);
 
-      eventSource
-        .addEventListener("error", (error: unknown) => {
-          this.logger.error("Error in sse connection", error);
-          obs.error(error);
-        });
+      eventSource.onmessage = (event: MessageEvent<object>): void => {
+        this.logger.debug("Received SSE message", event.data);
+        const message: Message = JsonUtils.deserializeObject<Message>(event.data, Message);
+        subscriber.next(message);
+      };
 
-      eventSource.addEventListener("message", (msg: MessageEvent<Message>) => {
-        this.logger.info("Received sse message", msg.data);
-        obs.next(msg.data);
-      });
+      eventSource.onerror = (error: unknown): void => {
+        this.logger.debug("Error in SSE connection", error);
 
-      return () => eventSource.close();
+        if (eventSource.readyState === eventSource.CLOSED) {
+          this.logger.debug("SSE connection closed");
+          subscriber.complete();
+        }
+
+        subscriber.error(error);
+      };
+
+      return (): void => {
+        this.logger.debug("Closing SSE connection");
+        eventSource.close();
+      };
     });
   }
+
+  public sendMessage(message: Message): Observable<void> {
+    this.logger.debug("Sending message: ", message);
+
+    const body: string = JsonUtils.serializeObject(message);
+    const headers: HttpHeaders = new HttpHeaders()
+      .set("Content-Type", "application/json");
+
+    return this.http.post<void>(ChatService.MESSAGE_SERVICE_URL, body, {headers});
+  }
+
 }
